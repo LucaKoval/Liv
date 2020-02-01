@@ -39,13 +39,21 @@
 }
 
 .submit-button {
-    height: 57px;
+    height: 53px;
+    border: 2px solid var(--main-color);
     border-radius: 100px;
     background: var(--main-color);
     color: white;
     width: calc(60% + 2px + 2px);
+
+    -webkit-transition: all 0.16s ease-out 0s;
+    -moz-transition: all 0.16s ease-out 0s;
+    -ms-transition: all 0.16s ease-out 0s;
+    transition: all 0.16s ease-out 0s;
 }
 
 .submit-button:hover {
     cursor: pointer;
+    background: white;
+    color: black;
 }

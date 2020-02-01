@@ -23,7 +23,7 @@ class Input extends Component {
     render() {
         let borderStyle = {border: "2px solid hsla(0, 0%, 0%, 0.08)"}
         if (this.state.focused) {
-            borderStyle = {border: "2px solid var(--light-color)"}
+            borderStyle = {border: "2px solid var(--main-color)"}
         }
         return (
             <div style={borderStyle} className="input-container">
