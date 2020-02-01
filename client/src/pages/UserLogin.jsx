@@ -21,7 +21,7 @@ class UserLogin extends Component {
     }
 
     handlePasswordChange = (e) => {
-        this.setState({ username: e.target.value })
+        this.setState({ password: e.target.value })
     }
 
     auth = () => {
