@@ -10,7 +10,7 @@
 const char* ssid     = "RedRover";
 const char* password = "";
  
-const char* host = "10.148.8.186";
+const char* host = "10.148.12.22";
 
 void setup() {
   Wire.begin();
@@ -49,7 +49,7 @@ void loop() {
   
   // Use WiFiClient class to create TCP connections
   WiFiClient client;
-  const int httpPort = 8000;
+  const int httpPort = 3100;
   if (!client.connect(host, httpPort)) {
     Serial.println("connection failed");
     return;
