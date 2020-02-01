@@ -70,27 +70,3 @@ nav .menu-icon {
 .active {
     color: black;
 }
-
-/* SVG */
-#mainHeart:hover {
-    fill: white;
-}
-
-#other:hover {
-    fill: white;
-}
-
-#pulse:hover {
-    fill: black;
-}
-
-#cross:hover {
-    fill: black;
-}
-
-#liv:hover {
-    fill: white;
-}
-
-
-
