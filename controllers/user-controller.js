@@ -52,11 +52,13 @@ updateUser = async (req, res) => {
                 message: 'User not found!',
             })
         }
-        user.creator = body.creator
-        user.date = body.date
-        user.title = body.title
-        user.answers = body.answers
-        user.length = body.length
+
+        // TODO: Make it dynamic
+        user.name = body.name
+        user.doctor = body.doctor
+        user.hospital = body.hospital
+        user.conditions = body.conditions
+        user.approved = body.approved
 
         user.save(function(err, user) {
             if (err) {
