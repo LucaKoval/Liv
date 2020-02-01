@@ -55,9 +55,13 @@ updateUser = async (req, res) => {
 
         // TODO: Make it dynamic
         user.name = body.name
+        user.date_of_birth = body.date_of_birth
         user.doctor = body.doctor
         user.hospital = body.hospital
+        user.blood_type = body.blood_type
         user.conditions = body.conditions
+        user.medications = body.medications
+        user.medical_history = body.medical_history
         user.approved = body.approved
 
         user.save(function(err, user) {
