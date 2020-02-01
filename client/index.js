@@ -2,6 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './app'
 
-// import './css/general.css'
+import './css/general.css'
 
 ReactDOM.render(<App />, document.getElementById('root'))
