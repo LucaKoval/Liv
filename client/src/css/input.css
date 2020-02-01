@@ -1,0 +1,26 @@
+.input-container {
+    margin: 14px;
+    display: inline-flex;
+    width: max-content;
+    padding: 14px 2px;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    align-items: center;
+
+    -webkit-transition: all 0.16s ease-out 0s;
+    -moz-transition: all 0.16s ease-out 0s;
+    -ms-transition: all 0.16s ease-out 0s;
+    transition: all 0.16s ease-out 0s;
+}
+
+.input-icon {
+    color: hsla(0, 0%, 0%, 1);
+    margin: 3px 8px 0 10px;
+}
+
+input {
+    border: 0;
+    font-size: var(--main-font-size);
+    width: 80%;
+}

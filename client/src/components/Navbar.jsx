@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import Logo from './Logo'
 import '../css/navbar.css'
+
+import Logo from './Logo'
 
 class Navbar extends Component {
     render() {
@@ -16,10 +17,10 @@ class Navbar extends Component {
                 <div className='nav-right-container'> 
                     <a href="/#" className="menu-icon"><i className="far fa-bars"></i></a>
                     <ul className="nav-right" id="navRight">
-                        <Link to="/polls/list" className={'nav-item' + (window.location.pathname === '/polls/list' ? ' active' : '')}>
+                        <Link to="/users/login" className={'nav-item' + (window.location.pathname === '/users/login' ? ' active' : '')}>
                             Login
                         </Link>
-                        <Link to="/polls/create" className={'nav-item' + (window.location.pathname === '/polls/create' ? ' active' : '')}>
+                        <Link to="/users/profile" className={'nav-item' + (window.location.pathname === '/users/profile' ? ' active' : '')}>
                             Profile
                         </Link>
                     </ul>
