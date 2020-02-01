@@ -1,0 +1,138 @@
+@import url(//fonts.googleapis.com/css?family=PT+Sans);
+
+@font-face {
+    font-family: Clear Sans;
+    src: url(/Users/Luca/FontBase/ClearSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: Clear Sans Bold;
+    src: url(/Users/Luca/FontBase/ClearSans-Bold.ttf);
+}
+
+/* Variables */
+:root {
+    --main-color: #32383c;
+    --main-font-size: 16px;
+    --secondary-font-size: 14px;
+}
+
+* {
+    font-family: 'Clear Sans', sans-serif;
+    text-decoration: none;
+    box-sizing: inherit;
+    -webkit-appearance: none;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0px;
+}
+
+body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: hsla(0, 0%, 0%, 0.04);
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    flex: 1 0 auto;
+}
+
+.title-text {
+    color: black;
+    font-weight: 800;
+    font-size: 2.1em;
+}
+
+.main-text {
+    color: black;
+    font-weight: 700;
+    font-size: 1.8em;
+}
+
+.secondary-text {
+    font-weight: 500;
+    font-size: 1.4em;
+}
+
+.tertiary-text {
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+.secondary-color {
+    color: hsla(0, 0%, 0%, 0.6);
+}
+
+.tertiary-color {
+    color: hsla(0, 0%, 0%, 0.25);
+}
+
+.emphasis-color {
+    color: hsla(0, 0%, 0%, 0.3);
+}
+
+.emphasis-bold {
+    font-weight: 900;
+}
+
+.all-caps {
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.padding {
+    padding: 30px;
+}
+
+input:focus {
+    outline: none;
+}
+
+input[type="search"]::-webkit-clear {  display: none; width : 0; height: 0; }
+input[type="search"]::-webkit-reveal {  display: none; width : 0; height: 0; }
+input[type="search"]::-ms-clear {  display: none; width : 0; height: 0; }
+input[type="search"]::-ms-reveal {  display: none; width : 0; height: 0; }
+input[type="search"]::-moz-clear {  display: none; width : 0; height: 0; }
+input[type="search"]::-moz-reveal {  display: none; width : 0; height: 0; }
+input[type="search"]::clear {  display: none; width : 0; height: 0; }
+input[type="search"]::reveal {  display: none; width : 0; height: 0; }
+
+input[type="search"]::-webkit-input-placeholder { font-family: 'Clear Sans', sans-serif; color: hsla(0, 0%, 0%, 0.3); }
+input[type="search"]::-ms-input-placeholder { font-family: 'Clear Sans', sans-serif; color: hsla(0, 0%, 0%, 0.3); }
+input[type="search"]::-moz-input-placeholder { font-family: 'Clear Sans', sans-serif; color: hsla(0, 0%, 0%, 0.3); }
+input[type="search"]::input-placeholder { font-family: 'Clear Sans', sans-serif; color: hsla(0, 0%, 0%, 0.3); }
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+input[type="search"]::-ms-search-decoration,
+input[type="search"]::-ms-search-cancel-button,
+input[type="search"]::-ms-search-results-button,
+input[type="search"]::-ms-search-results-decoration { display: none; }
+input[type="search"]::-moz-search-decoration,
+input[type="search"]::-moz-search-cancel-button,
+input[type="search"]::-moz-search-results-button,
+input[type="search"]::-moz-search-results-decoration { display: none; }
+input[type="search"]::search-decoration,
+input[type="search"]::search-cancel-button,
+input[type="search"]::search-results-button,
+input[type="search"]::search-results-decoration { display: none; }
