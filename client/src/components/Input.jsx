@@ -28,7 +28,7 @@ class Input extends Component {
         return (
             <div style={borderStyle} className="input-container">
                 {this.props.icon}
-                <input onBlur={this.onBlur} onFocus={this.onFocus} type="text" placeholder={this.props.placeholder}></input>
+                <input onChange={this.props.handleChange} onBlur={this.onBlur} onFocus={this.onFocus} type="text" placeholder={this.props.placeholder}></input>
             </div>
         )
     }

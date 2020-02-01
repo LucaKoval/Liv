@@ -54,6 +54,8 @@ updateUser = async (req, res) => {
         }
 
         // TODO: Make it dynamic
+        user.username = body.username
+        user.password = body.password
         user.name = body.name
         user.date_of_birth = body.date_of_birth
         user.doctor = body.doctor
@@ -114,6 +116,21 @@ getUserById = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
+getUserByUsername = async (req, res) => {
+    await User.findOne({ username: req.params.username }, (err, user) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+
+        if (!user) {
+            return res
+                .status(404)
+                .json({ success: false, error: 'User not found' })
+        }
+        return res.status(200).json({ success: true, data: user })
+    }).catch(err => console.log(err))
+}
+
 getUsers = async (req, res) => {
     await User.find({}, (err, users) => {
         if (err) {
@@ -134,4 +151,5 @@ module.exports = {
     deleteUser,
     getUsers,
     getUserById,
+    getUserByUsername,
 }

@@ -3,6 +3,7 @@ import { User, Lock } from 'react-feather'
 
 import '../css/userLogin.css'
 
+import api from '../api'
 import Input from '../components/Input'
 
 class UserLogin extends Component {
@@ -10,36 +11,37 @@ class UserLogin extends Component {
         super(props)
 
         this.state = {
-            usernameInputFocused: false,
-            passwordInputFocused: false
+            username: '',
+            password: ''
         }
     }
 
-    auth = () => {
+    handleUsernameChange = (e) => {
+        this.setState({ username: e.target.value })
+    }
 
+    handlePasswordChange = (e) => {
+        this.setState({ username: e.target.value })
+    }
+
+    auth = () => {
+        api.getUserByUsername(this.state.username).then(function(val) {
+            if (val.status === 200) {
+                console.log(val)
+            }
+        })
     }
 
     render() {
         const usernameIcon = <User className="input-icon" size={22} />
         const passwordIcon = <Lock className="input-icon" size={22} />
 
-        // const ReactDOM = require('react-dom')
-        // let usernameInputFocused = this.state.usernameInputFocused
-        // let passwordInputFocused = false
-        // if ( document.activeElement === ReactDOM.findDOMNode(this.refs.usernameInput) ) {
-        //     console.log('yes')
-        //     usernameInputFocused = true
-        // }
-        // if ( document.activeElement === ReactDOM.findDOMNode(this.refs.passwordInput) ) {
-        //     passwordInputFocused = true
-        // }
-
         return (
             <div>
                 <div className="login-container">
                     <div className="login-form">
-                        <Input icon={usernameIcon} placeholder="Username" />
-                        <Input icon={passwordIcon} placeholder="Password" />
+                        <Input handleChange={this.handleUsernameChange} icon={usernameIcon} placeholder="Username" />
+                        <Input handleChange={this.handlePasswordChange} icon={passwordIcon} placeholder="Password" />
                         <input onClick={this.auth} className="submit-button all-caps" type="submit" value="Login"></input>
                     </div>
                 </div>

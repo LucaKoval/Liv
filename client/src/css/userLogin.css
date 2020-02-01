@@ -31,7 +31,7 @@
     box-shadow: 0 var(--shadow-y-offset) var(--shadow-blur) 0 rgba(0,0,0,.1);
     
     height: 60%;
-    width: 50%;   
+    width: 50%;
 }
 
 .login-form > * {
@@ -44,4 +44,8 @@
     background: var(--main-color);
     color: white;
     width: calc(60% + 2px + 2px);
+}
+
+.submit-button:hover {
+    cursor: pointer;
 }
