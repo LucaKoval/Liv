@@ -49,7 +49,7 @@ void loop() {
   
   // Use WiFiClient class to create TCP connections
   WiFiClient client;
-  const int httpPort = 3100;
+  const int httpPort = 9000;
   if (!client.connect(host, httpPort)) {
     Serial.println("connection failed");
     return;
