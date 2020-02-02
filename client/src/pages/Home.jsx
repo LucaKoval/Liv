@@ -38,13 +38,13 @@ class Home extends Component {
                 </div>
                 
                 <div className = "button-section">
-                    <button className = "signup-button">
-                        <a href = "signup place holder">Get Started</a>
+                {/* <input onClick={this.auth} className="submit-button all-caps emphasis-bold" type="submit" value="Get Started"></input> */}
+                    <button className = "submit-button">
+                        <a href = "/signup" className = "all-caps emphasis-bold">Get Started</a>
                     </button>
                 </div>
             </div>
         )
     }
 }
-
 export default Home
