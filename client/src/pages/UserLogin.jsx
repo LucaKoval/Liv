@@ -30,6 +30,8 @@ class UserLogin extends Component {
             if (val.status === 200) {
                 if (val.data.data.password === classThis.state.password) {
                     console.log('they are good!')
+                    sessionStorage.clear()
+                    localStorage.setItem('liv-auth-token', classThis.state.username)
                 } else {
                     console.log('they are not good')
                 }
@@ -40,6 +42,10 @@ class UserLogin extends Component {
     render() {
         const usernameIcon = <User className="input-icon" size={22} />
         const passwordIcon = <Lock className="input-icon" size={22} />
+
+        if (localStorage.getItem('liv-auth-token') !== undefined) {
+            window.location.href = '/users/profile'
+        }
 
         return (
             <div>
