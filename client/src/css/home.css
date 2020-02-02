@@ -1,0 +1,42 @@
+.about {
+    display: table-cell;
+    height: 60%;
+    vertical-align: middle;
+    border: 1px transparent;
+}
+
+.title {
+    text-align: center;
+    font-size: 5vw;
+    line-height: 7vw;
+    justify-content: center;
+    /* margin-left: 250px; */
+    margin-top: 130px;
+    color: #FC534E;
+}
+
+.subtitle {
+    text-align: center;
+    padding-top: 2%;
+    padding-right: 20%;
+    font-size: 3.5vw;
+    justify-content: center;
+    line-height: 4vw;
+    margin-left: 280px;
+    margin-bottom: 145px;
+}
+
+.description-name {
+    font-size: 2.5vw;
+    line-height: 6vw;
+    margin-left: 100px;
+    margin-top: 50px;
+    color: #FC534E;
+}
+
+.description {
+    font-size: 1.5vw;
+    line-height: 2.2vw;
+    margin-left: 100px;
+    margin-right: 100px;
+}
