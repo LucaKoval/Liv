@@ -36,6 +36,12 @@ class Home extends Component {
                     Liv makes a loud sound and alerts the wearer's approved contacts. By providing information to emergency responders efficiently
                     when the patient may be incapacitated, <b>Liv minimizes the time it takes to help a patient and saves lives. </b></div>
                 </div>
+                
+                <div className = "button-section">
+                    <button className = "signup-button">
+                        <a href = "signup place holder">Get Started</a>
+                    </button>
+                </div>
             </div>
         )
     }
