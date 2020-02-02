@@ -13,6 +13,7 @@ class UserProfile extends Component {
         this.state = {
             user: {},
             newUser: {},
+            newApproved: '',
             edit: false
         }
     }
@@ -30,18 +31,32 @@ class UserProfile extends Component {
 
     submit = () => {
         let classThis = this
-        api.updateUserByName(localStorage.getItem('liv-auth-token'), this.state.newUser).then(function(val) {
+        let newUser = this.state.newUser
+        api.getUserByName(this.state.newApproved).then(function(val) {
             if (val.status === 200) {
-                window.location.href = '/profile'
+                newUser.approved.push(val.data.data._id)
+                classThis.setState({ newUser: newUser })
+        
+                api.updateUserByName(localStorage.getItem('liv-auth-token'), classThis.state.newUser).then(function(val) {
+                    if (val.status === 200) {
+                        window.location.href = '/profile'
+                    }
+                })               
             }
-        })
 
-        this.setState({ edit: false, user: this.state.newUser })
+            this.setState({ edit: false, user: this.state.newUser })
+        })
     }
+
+    // (202) 629-0604
 
     handleChange = (property, e) => {
         let newUser = this.state.newUser
-        newUser[property] = e.target.value
+        if (property === 'approved') {
+            this.setState({ newApproved: e.target.value })
+        } else {
+            newUser[property] = e.target.value
+        }
         this.setState({ newUser: newUser })
     }
 
@@ -69,7 +84,12 @@ class UserProfile extends Component {
                 const usernameIcon = <User className="input-icon" size={22} />
                 const textDisplay = !this.state.edit ? 'inline' : 'none'
                 const editDisplay = this.state.edit ? 'inline' : 'none'
-                const value = (this.state.user[property] === '' ? '' : this.state.user[property])
+                let value = ''
+                if (property === 'approved') {
+                    value = this.state.newApproved
+                } else {
+                    value = (this.state.user[property] === '' ? '' : this.state.user[property])   
+                }
 
                 otherInformation.push(
                     <div key={counter}>

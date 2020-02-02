@@ -28,7 +28,7 @@ class Input extends Component {
         return (
             <div style={borderStyle} className="input-container">
                 {this.props.icon}
-                <input onChange={this.props.handleChange} onBlur={this.onBlur} onFocus={this.onFocus} type="text" placeholder={this.props.placeholder}></input>
+                <input onChange={this.props.handleChange} onBlur={this.onBlur} onFocus={this.onFocus} type="text" placeholder={this.props.placeholder} value={this.props.value}></input>
             </div>
         )
     }
@@ -36,7 +36,7 @@ class Input extends Component {
 
 Input.propTypes = {
     icon: PropTypes.object.isRequired,
-    placeholder: PropTypes.string.isRequired
+    placeholder: PropTypes.string.isRequired,
 }
 
 export default Input
