@@ -27,11 +27,11 @@ class UserLogin extends Component {
 
     auth = () => {
         let classThis = this
-        api.getUserByUsername(this.state.username).then(function(val) {
+        api.getUserByName(this.state.name).then(function(val) {
             if (val.status === 200) {
                 if (val.data.data.password === classThis.state.password) {
                     console.log('they are good!')
-                    localStorage.setItem('liv-auth-token', classThis.state.username)
+                    localStorage.setItem('liv-auth-token', classThis.state.name)
                     window.location.href = '/profile'
                 } else {
                     // TODO: Display error and reset inputs
