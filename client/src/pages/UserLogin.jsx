@@ -30,9 +30,10 @@ class UserLogin extends Component {
             if (val.status === 200) {
                 if (val.data.data.password === classThis.state.password) {
                     console.log('they are good!')
-                    sessionStorage.clear()
                     localStorage.setItem('liv-auth-token', classThis.state.username)
+                    window.location.href = '/users/profile'
                 } else {
+                    // TODO: Display error and reset inputs
                     console.log('they are not good')
                 }
             }
@@ -43,7 +44,7 @@ class UserLogin extends Component {
         const usernameIcon = <User className="input-icon" size={22} />
         const passwordIcon = <Lock className="input-icon" size={22} />
 
-        if (localStorage.getItem('liv-auth-token') !== undefined) {
+        if (localStorage.getItem('liv-auth-token') !== undefined && localStorage.getItem('liv-auth-token') !== null) {
             window.location.href = '/users/profile'
         }
 
