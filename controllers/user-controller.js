@@ -85,6 +85,56 @@ updateUser = async (req, res) => {
     })
 }
 
+updateUserByName = async (req, res) => {
+    const body = req.body
+
+    if (!body) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must provide a body to update',
+        })
+    }
+
+    User.findOne({ name: req.params.name }, (err, user) => {
+        if (err) {
+            return res.status(404).json({
+                err,
+                message: 'User not found!',
+            })
+        }
+
+        // TODO: Make it dynamic
+        user.name = body.name
+        user.cellPhone = body.cellPhone
+        user.password = body.password
+        user.date_of_birth = body.date_of_birth
+        user.doctor = body.doctor
+        user.hospital = body.hospital
+        user.blood_type = body.blood_type
+        user.conditions = body.conditions
+        user.medications = body.medications
+        user.medical_history = body.medical_history
+        user.approved = body.approved
+
+        user.save(function(err, user) {
+            if (err) {
+                console.log(err)
+                return res.status(404).json({
+                    err,
+                    message: 'User not updated!',
+                })
+            } else {
+                console.log('No error! User with name ' + user.name + ' was updated.')
+                return res.status(200).json({
+                    success: true,
+                    name: user.name,
+                    message: 'User updated!',
+                })
+            }
+        })
+    })
+}
+
 deleteUser = async (req, res) => {
     await User.findOneAndDelete({ _id: req.params.id }, (err, user) => {
         if (err) {
@@ -149,6 +199,7 @@ blast = async (req, res) => {
     console.log('id: ' + req.body.uniqueID)
     console.log('lat: ' + req.body.latitude)
     console.log('longitude: ' + req.body.longitude)
+    if (req.body.latitude != 0 || req.body.longitude != 0) console.log('NON-ZERO')
     return res.status(200).json({ success: true })
     // await User.find({}, (err, users) => {
     //     if (err) {
@@ -170,5 +221,6 @@ module.exports = {
     getUsers,
     getUserById,
     getUserByName,
-    blast
+    blast,
+    updateUserByName
 }

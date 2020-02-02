@@ -1,0 +1,113 @@
+.profile-container {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100%;
+}
+
+.profile-content-container {
+    width: 100%;
+}
+
+.row {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    padding: 50px 0;
+}
+
+.profile-picture {
+    flex: 1;
+    width: 30%;
+}
+
+.user-icon {
+    position: relative;
+    left: 95px;
+    bottom: 26px;
+}
+
+.profile-picture > svg {
+    position: relative;
+}
+
+.required-information {
+    flex: 1;
+    height: 100%;
+
+    font-size: 1.5em;
+}
+
+.required-information > * {
+    padding: 20px;
+}
+
+.other-information-container {
+    padding: 0px 100px 50px 100px;
+    font-size: 1.5em;
+}
+
+.other-information {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    width: 100%;
+}
+
+.other-information > * {
+    padding: 20px;
+}
+
+.button-container {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;  
+
+    width: 100%;
+    padding: 50px;
+}
+
+.submit-button {
+    height: 53px;
+    border: 2px solid var(--main-color);
+    border-radius: 100px;
+    background: var(--main-color);
+    color: white;
+    width: calc(60% + 2px + 2px);
+
+    -webkit-transition: all 0.16s ease-out 0s;
+    -moz-transition: all 0.16s ease-out 0s;
+    -ms-transition: all 0.16s ease-out 0s;
+    transition: all 0.16s ease-out 0s;
+}
+
+.submit-button:hover {
+    cursor: pointer;
+    background: white;
+    color: black;
+}
+
+
+
+

@@ -39,6 +39,7 @@ class Navbar extends Component {
     
     render() {
         let linkColorOverride = this.state.hover ? {color: 'white'} : {}
+        let profileDisplay = (localStorage.getItem('liv-auth-token') === undefined || localStorage.getItem('liv-auth-token') === null) ? 'none' : 'inline'
 
         return (
             <nav onMouseOver={this.onMouseOver} onMouseOut={this.onMouseOut}>
@@ -51,7 +52,7 @@ class Navbar extends Component {
                     <a href="/#" className="menu-icon"><i className="far fa-bars"></i></a>
                     <ul className="nav-right" id="navRight">
                         {this.loggedIn(linkColorOverride)}
-                        <Link to="/profile" className={'nav-item' + (window.location.pathname === '/profile' ? ' active' : '')} style={linkColorOverride}>
+                        <Link to="/profile" className={'nav-item' + (window.location.pathname === '/profile' ? ' active' : '')} style={linkColorOverride, {display: profileDisplay}}>
                             Profile
                         </Link>
                     </ul>
