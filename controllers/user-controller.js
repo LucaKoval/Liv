@@ -195,23 +195,62 @@ getUsers = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
+sendToPhone = async (id, res, userName) => {
+    console.log('id: ' + id)
+            await User.findOne({ _id: id }, (err, user) => {
+                if (err) {
+                    return res.status(400).json({ success: false, error: err })
+                }
+            
+                if (!user) {
+                    return res
+                        .status(404)
+                        .json({ success: false, error: 'User not found' })
+                }
+
+                let twilio = require('twilio')
+    
+                let accountSid = 'AC4a57deb020a74ad9f5b39388046c1224'; // Your Account SID from www.twilio.com/console
+                let authToken = 'e04a4208e8d17e15b879ea60b1d2a7d3';   // Your Auth Token from www.twilio.com/console
+                
+                let client = new twilio(accountSid, authToken);
+                
+                client.messages.create({
+                    body: 'Notification! ' + userName + ' is in need of help!',
+                    to: '+1'+user.cellPhone,  // Text this number
+                    from: '+12026290604' // From a valid Twilio number
+                })
+                .then(
+                    (message) => console.log(message.sid)
+                )
+            
+                return res.status(200).json({ success: true })
+            })
+}
+
 blast = async (req, res) => {
     console.log('id: ' + req.body.uniqueID)
     console.log('lat: ' + req.body.latitude)
     console.log('longitude: ' + req.body.longitude)
-    if (req.body.latitude != 0 || req.body.longitude != 0) console.log('NON-ZERO')
-    return res.status(200).json({ success: true })
-    // await User.find({}, (err, users) => {
-    //     if (err) {
-    //         return res.status(400).json({ success: false, error: err })
-    //     }
-    //     if (!users.length) {
-    //         return res
-    //             .status(404)
-    //             .json({ success: false, error: 'Cannot blast' })
-    //     }
-    //     return res.status(200).json({ success: true, data: users })
-    // }).catch(err => console.log(err))
+
+    await User.findOne({ _id: req.body.uniqueID }, (err, user) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+
+        if (!user) {
+            return res
+                .status(404)
+                .json({ success: false, error: 'User not found' })
+        }
+
+        console.log(user.approved)
+        console.log(user.cellPhone)
+
+        for (let i = 0; i < user.approved.length; i++) {
+            sendToPhone(user.approved[i], res, user.name)
+        }
+    }).catch(err => console.log(err))
 }
 
 module.exports = {
