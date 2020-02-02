@@ -72,3 +72,7 @@ nav .menu-icon {
 .active {
     color: black;
 }
+
+Logout:hover {
+    cursor: pointer;
+}

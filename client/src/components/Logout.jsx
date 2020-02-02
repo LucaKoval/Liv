@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 
 import '../css/logout.css'
 
@@ -31,7 +30,7 @@ class Logout extends Component {
 
         return (
             <div>
-                <div onClick={this.logoutCheck} style={this.props.linkColorOverride}>Logout</div>
+                <div onClick={this.logoutCheck} style={this.props.linkColorOverride} className='nav-item logout-text'>Logout</div>
                 <div className='modal-container' style={{display: displayModal}}>
                     <div className='modal'>
                         <div className='modal-text-container'>

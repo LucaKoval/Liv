@@ -35,6 +35,42 @@ createUser = (req, res) => {
     })
 }
 
+// createUserSignup = (req, res) => {
+//     // const username = req.body.username
+//     // const cellPhone = req.body.cellPhone
+//     // const password = req.body.password
+
+//     if (!body) {
+//         return res.status(400).json({
+//             success: false,
+//             error: 'You must provide a user'
+//         })
+//     }
+
+//     const user = new User(body)
+
+//     if (!user) {
+//         return res.status(400).json({ success: false, error: err })
+//     }
+
+//     user.save(function(err, user) {
+//         if (err) {
+//             console.log(err)
+//             return res.status(400).json({
+//                 err,
+//                 message: 'User not created!'
+//             })
+//         } else {
+//             console.log('No error! User was created with id ' + user._id + '.')
+//             return res.status(201).json({
+//                 success: true,
+//                 id: user._id,
+//                 message: 'User created!',
+//             })
+//         }
+//     })
+// }
+
 updateUser = async (req, res) => {
     const body = req.body
 
@@ -54,9 +90,8 @@ updateUser = async (req, res) => {
         }
 
         // TODO: Make it dynamic
-        user.username = body.username
-        user.password = body.password
         user.name = body.name
+        user.password = body.password
         user.date_of_birth = body.date_of_birth
         user.doctor = body.doctor
         user.hospital = body.hospital
@@ -116,8 +151,8 @@ getUserById = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
-getUserByUsername = async (req, res) => {
-    await User.findOne({ username: req.params.username }, (err, user) => {
+getUserByName = async (req, res) => {
+    await User.findOne({ name: req.params.name }, (err, user) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }

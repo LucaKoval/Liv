@@ -23,11 +23,6 @@ class Navbar extends Component {
         this.setState({ hover: false })
     }
 
-    loggout = () => {
-
-        let linkColorOverride = this.state.hover ? {color:'white'} : {}
-    }
-
     loggedIn = (linkColorOverride) => {
         if (localStorage.getItem('liv-auth-token') !== undefined && localStorage.getItem('liv-auth-token') !== null) {
             return (
@@ -35,7 +30,7 @@ class Navbar extends Component {
             )
         } else {
             return (
-                <Link to="/users/login" className={'nav-item' + (window.location.pathname === '/users/login' ? ' active' : '')} style={linkColorOverride}>
+                <Link to="/login" className={'nav-item' + (window.location.pathname === '/login' ? ' active' : '')} style={linkColorOverride}>
                     Login
                 </Link>
             )
@@ -52,11 +47,11 @@ class Navbar extends Component {
                         <Logo hover={this.state.hover}/>
                     </li>
                 </ul>
-                <div className='nav-right-container'> 
+                <div className='nav-right-container'>
                     <a href="/#" className="menu-icon"><i className="far fa-bars"></i></a>
                     <ul className="nav-right" id="navRight">
                         {this.loggedIn(linkColorOverride)}
-                        <Link to="/users/profile" className={'nav-item' + (window.location.pathname === '/users/profile' ? ' active' : '')} style={linkColorOverride}>
+                        <Link to="/profile" className={'nav-item' + (window.location.pathname === '/profile' ? ' active' : '')} style={linkColorOverride}>
                             Profile
                         </Link>
                     </ul>
