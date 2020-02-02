@@ -1,8 +1,18 @@
 .about {
+    /* display: table-cell; */
+    margin-top: 100px;
+    height: 60%;
+    vertical-align: middle;
+    border: 1px transparent;
+    background: white;
+}
+
+.title-main {
     display: table-cell;
     height: 60%;
     vertical-align: middle;
     border: 1px transparent;
+    background:  #FC534E;
 }
 
 .title {
@@ -12,7 +22,7 @@
     justify-content: center;
     /* margin-left: 250px; */
     margin-top: 130px;
-    color: #FC534E;
+    color: white;
 }
 
 .subtitle {
@@ -23,7 +33,7 @@
     justify-content: center;
     line-height: 4vw;
     margin-left: 280px;
-    margin-bottom: 145px;
+    margin-bottom: 175px;
 }
 
 .description-name {

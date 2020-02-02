@@ -25,6 +25,7 @@ class Navbar extends Component {
 
     loggout = () => {
 
+        let linkColorOverride = this.state.hover ? {color:'white'} : {}
     }
 
     loggedIn = (linkColorOverride) => {
