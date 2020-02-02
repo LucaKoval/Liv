@@ -40,7 +40,7 @@ class Navbar extends Component {
             )
         }
     }
-
+    
     render() {
         let linkColorOverride = this.state.hover ? {color: 'white'} : {}
 
