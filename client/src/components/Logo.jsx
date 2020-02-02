@@ -5,20 +5,20 @@ import '../css/logo.css'
 
 class Logo extends Component {
     render() {
-            let heartFill = 'white'
-            let otherHeartFill = 'white'
-            let pulseFill = '#FC534E'
-            let crossFill = '#FC534E'
-            let livFill = 'white'
+            let heartFill = '#FC534E'
+            let otherHeartFill = '#FC534E'
+            let pulseFill = '#FDCBC6'
+            let crossFill = '#FFDC84'
+            let livFill = 'black'
 
 
         if (this.props.hover) {
-            heartFill = '#FC534E'
-            otherHeartFill = '#FC534E'
-            pulseFill = '#FDCBC6'
-            crossFill = '#FFDC84'
-            livFill = 'black'
-        }
+            heartFill = 'white'
+            otherHeartFill = 'white'
+            pulseFill = '#FC534E'
+            crossFill = '#FC534E'
+            livFill = 'white'
+            }
 
         return (
             <Link to="/">

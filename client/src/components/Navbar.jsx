@@ -28,7 +28,7 @@ class Navbar extends Component {
         //     linkColorOverride = 'white'
         // }
 
-        let linkColorOverride = this.state.hover ? {color:'#575554'} : {}
+        let linkColorOverride = this.state.hover ? {color:'white'} : {}
 
         return (
             <nav onMouseOver={this.onMouseOver} onMouseOut={this.onMouseOut}>
