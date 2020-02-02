@@ -1,4 +1,4 @@
-.login-container {
+.sign-up-container {
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -11,7 +11,7 @@
     width: 100vw;
 }
 
-.login-form {
+.sign-up-form {
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -34,7 +34,7 @@
     width: 50%;
 }
 
-.login-form > * {
+.sign-up-form > * {
     width: 60%;
 }
 
@@ -56,9 +56,4 @@
     cursor: pointer;
     background: white;
     color: black;
-}
-
-.sign-up {
-    color: var(--main-color);
-    text-align: center;
 }

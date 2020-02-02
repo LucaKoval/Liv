@@ -5,10 +5,11 @@ const UserCtrl = require('../controllers/user-controller')
 const router = express.Router()
 
 router.post('/user', UserCtrl.createUser)
+// router.post('/user/signup/:username/:cellPhone/:password', UserCtrl.createUserSignup)
 router.put('/user/:id', UserCtrl.updateUser)
 router.delete('/user/:id', UserCtrl.deleteUser)
 router.get('/user/:id', UserCtrl.getUserById)
-router.get('/user/username/:username', UserCtrl.getUserByUsername)
+router.get('/user/name/:name', UserCtrl.getUserByName)
 router.get('/users', UserCtrl.getUsers)
 router.post('/blast', UserCtrl.blast)
 
