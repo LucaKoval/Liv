@@ -12,13 +12,13 @@ class UserLogin extends Component {
         super(props)
 
         this.state = {
-            username: '',
+            name: '',
             password: ''
         }
     }
 
-    handleUsernameChange = (e) => {
-        this.setState({ username: e.target.value })
+    handleNameChange = (e) => {
+        this.setState({ name: e.target.value })
     }
 
     handlePasswordChange = (e) => {
@@ -53,7 +53,7 @@ class UserLogin extends Component {
             <div>
                 <div className="login-container">
                     <div className="login-form">
-                        <Input handleChange={this.handleUsernameChange} icon={usernameIcon} placeholder="Username" />
+                        <Input handleChange={this.handleNameChange} icon={usernameIcon} placeholder="Name" />
                         <Input handleChange={this.handlePasswordChange} icon={passwordIcon} placeholder="Password" />
                         <input onClick={this.auth} className="submit-button all-caps emphasis-bold" type="submit" value="Login"></input>
                         <Link to="/signup" className='sign-up'>

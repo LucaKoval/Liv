@@ -35,42 +35,6 @@ createUser = (req, res) => {
     })
 }
 
-// createUserSignup = (req, res) => {
-//     // const username = req.body.username
-//     // const cellPhone = req.body.cellPhone
-//     // const password = req.body.password
-
-//     if (!body) {
-//         return res.status(400).json({
-//             success: false,
-//             error: 'You must provide a user'
-//         })
-//     }
-
-//     const user = new User(body)
-
-//     if (!user) {
-//         return res.status(400).json({ success: false, error: err })
-//     }
-
-//     user.save(function(err, user) {
-//         if (err) {
-//             console.log(err)
-//             return res.status(400).json({
-//                 err,
-//                 message: 'User not created!'
-//             })
-//         } else {
-//             console.log('No error! User was created with id ' + user._id + '.')
-//             return res.status(201).json({
-//                 success: true,
-//                 id: user._id,
-//                 message: 'User created!',
-//             })
-//         }
-//     })
-// }
-
 updateUser = async (req, res) => {
     const body = req.body
 
@@ -91,6 +55,7 @@ updateUser = async (req, res) => {
 
         // TODO: Make it dynamic
         user.name = body.name
+        user.cellPhone = body.cellPhone
         user.password = body.password
         user.date_of_birth = body.date_of_birth
         user.doctor = body.doctor
@@ -204,6 +169,6 @@ module.exports = {
     deleteUser,
     getUsers,
     getUserById,
-    getUserByUsername,
+    getUserByName,
     blast
 }
