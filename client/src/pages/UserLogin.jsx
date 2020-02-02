@@ -25,9 +25,14 @@ class UserLogin extends Component {
     }
 
     auth = () => {
+        let classThis = this
         api.getUserByUsername(this.state.username).then(function(val) {
             if (val.status === 200) {
-                console.log(val)
+                if (val.data.data.password === classThis.state.password) {
+                    console.log('they are good!')
+                } else {
+                    console.log('they are not good')
+                }
             }
         })
     }
@@ -42,7 +47,7 @@ class UserLogin extends Component {
                     <div className="login-form">
                         <Input handleChange={this.handleUsernameChange} icon={usernameIcon} placeholder="Username" />
                         <Input handleChange={this.handlePasswordChange} icon={passwordIcon} placeholder="Password" />
-                        <input onClick={this.auth} className="submit-button all-caps" type="submit" value="Login"></input>
+                        <input onClick={this.auth} className="submit-button all-caps emphasis-bold" type="submit" value="Login"></input>
                     </div>
                 </div>
             </div>
