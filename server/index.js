@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 
 const db = require('./db')
-const pollRouter = require('../routes/user-router')
+const userRouter = require('../routes/user-router')
 
 const app = express()
 const apiPort = 3100
@@ -18,6 +18,6 @@ app.get('/', (req, res) => {
     res.send('Hello there')
 })
 
-app.use('/api', pollRouter)
+app.use('/api', userRouter)
 
 app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))

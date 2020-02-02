@@ -9,7 +9,7 @@ export const getAllUsers = () => api.get(`/users`)
 export const updateUserById = (id, payload) => api.put(`/user/${id}`, payload)
 export const deleteUserById = id => api.delete(`/user/${id}`)
 export const getUserById = id => api.get(`/user/${id}`)
-export const getUserByUsername = username => api.get(`/user/${username}`)
+export const getUserByUsername = username => api.get(`/user/username/${username}`)
 
 const apis = {
     insertUser,

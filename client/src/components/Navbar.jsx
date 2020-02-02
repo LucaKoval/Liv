@@ -23,6 +23,13 @@ class Navbar extends Component {
     }
 
     render() {
+        // let linkColorOverride = ''
+        // if (this.state.hover) {
+        //     linkColorOverride = 'white'
+        // }
+
+        let linkColorOverride = this.state.hover ? {color:'white'} : {}
+
         return (
             <nav onMouseOver={this.onMouseOver} onMouseOut={this.onMouseOut}>
                 <ul className="nav-left">
@@ -33,10 +40,10 @@ class Navbar extends Component {
                 <div className='nav-right-container'> 
                     <a href="/#" className="menu-icon"><i className="far fa-bars"></i></a>
                     <ul className="nav-right" id="navRight">
-                        <Link to="/users/login" className={'nav-item' + (window.location.pathname === '/users/login' ? ' active' : '')}>
+                        <Link to="/users/login" className={'nav-item' + (window.location.pathname === '/users/login' ? ' active' : '')} style={linkColorOverride}>
                             Login
                         </Link>
-                        <Link to="/users/profile" className={'nav-item' + (window.location.pathname === '/users/profile' ? ' active' : '')}>
+                        <Link to="/users/profile" className={'nav-item' + (window.location.pathname === '/users/profile' ? ' active' : '')} style={linkColorOverride}>
                             Profile
                         </Link>
                     </ul>

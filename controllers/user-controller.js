@@ -145,6 +145,24 @@ getUsers = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
+blast = async (req, res) => {
+    console.log('id: ' + req.body.uniqueID)
+    console.log('lat: ' + req.body.latitude)
+    console.log('longitude: ' + req.body.longitude)
+    return res.status(200).json({ success: true })
+    // await User.find({}, (err, users) => {
+    //     if (err) {
+    //         return res.status(400).json({ success: false, error: err })
+    //     }
+    //     if (!users.length) {
+    //         return res
+    //             .status(404)
+    //             .json({ success: false, error: 'Cannot blast' })
+    //     }
+    //     return res.status(200).json({ success: true, data: users })
+    // }).catch(err => console.log(err))
+}
+
 module.exports = {
     createUser,
     updateUser,
@@ -152,4 +170,5 @@ module.exports = {
     getUsers,
     getUserById,
     getUserByUsername,
+    blast
 }
