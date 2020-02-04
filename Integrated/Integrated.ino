@@ -1,12 +1,10 @@
-/*
- *  Simple HTTP get webclient test
- */
-
- 
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <Wire.h>
 #include <Adafruit_GPS.h>
+#include <SPI.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
 
 
 
@@ -27,20 +25,63 @@ Adafruit_GPS GPS(&mySerial);
 #define GPSECHO  true
 
 
-
-
 const char* ssid     = "RedRover";
 const char* password = "";
  
 const char* host = "10.148.12.22";
 
+
+
+
+
+#define SCREEN_WIDTH 128 // OLED display width, in pixels
+#define SCREEN_HEIGHT 64 // OLED display height, in pixels
+
+// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
+#define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+
+#include <Wire.h>
+#include "pitches.h"
+
+
+// constant variables
+const int  buttonPin = 2;
+
+
+// changing variables
+int buttonState = 0;         // current state of the button
+int lastButtonState = 0;     // previous state of the button
+bool broadcasting = false;
+int bounceCheck = 0;
+
+
+
+
+
+
 void setup() {
-  Wire.begin();
-  Serial.begin(115200);
-  delay(100);
- 
-  // We start by connecting to a WiFi network
- 
+  // initialize serial communication:
+   Wire.begin();
+    Serial.begin(115200);
+    delay(100);
+    
+     // initialize the button pin as a input:
+    pinMode(buttonPin, INPUT);
+
+
+    if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { 
+        Serial.println(F("SSD1306 allocation failed"));
+    }
+
+    display.display();
+    // Clear the buffer
+    display.clearDisplay();
+
+
+
+
   Serial.println();
   Serial.println();
   Serial.print("Connecting to ");
@@ -63,7 +104,7 @@ void setup() {
 
 
 
-// 9600 NMEA is the default baud rate for Adafruit MTK GPS's- some use 4800
+  // 9600 NMEA is the default baud rate for Adafruit MTK GPS's- some use 4800
   GPS.begin(9600);
 
   // uncomment this line to turn on RMC (recommended minimum) and GGA (fix data) including altitude
@@ -85,47 +126,20 @@ void setup() {
   // Ask for firmware version
   mySerial.println(PMTK_Q_RELEASE);
 
-  
 
 
-  
 }
+
 
 int value = 0;
 uint32_t timer = millis();
 
 
-
 void loop() {
-  // put your main code here, to run repeatedly:
-  //delay(500);
-  ++value;
- 
-  //Serial.print("connecting to ");
-  //Serial.println(host);
+    ++value;
 
 
-  /*
-  // Use WiFiClient class to create TCP connections
-  WiFiClient client;
-  const int httpPort = 3100;
-  if (!client.connect(host, httpPort)) {
-    //Serial.println("connection failed");
-    return;
-  }
-  else {
-    //Serial.println("connection success");
-  }
-  
-  //Serial.println();
-  //Serial.println();
-  */
-
-
-
-
-
-  char c = GPS.read();
+      char c = GPS.read();
   // if you want to debug, this is a good time to do it!
   if ((c) && (GPSECHO))
     Serial.write(c);
@@ -144,8 +158,35 @@ void loop() {
   // if millis() or timer wraps around, we'll just reset it
   if (timer > millis())  timer = millis();
 
-  // approximately every 2 seconds or so, print out the current stats
-  if (millis() - timer > 2000) {
+
+
+  
+  
+   // read the pushbutton input pin:
+    buttonState = digitalRead(buttonPin);
+    //Serial.println(buttonState);
+
+    // compare the buttonState to its previous state
+   if (buttonState == 1) {
+          
+      if (broadcasting) {
+          Serial.println("Turning broadcast off...");
+          broadcasting=false;
+      } else {
+          Serial.println("Turning broadcast on...");
+          broadcasting=true;
+      }
+
+      buttonState = 0;
+      delay(500);
+   
+   }
+
+
+
+
+/*
+   if (millis() - timer > 2000) {
     timer = millis(); // reset the timer
 
     Serial.print("\nTime: ");
@@ -167,7 +208,7 @@ void loop() {
     Serial.println(GPS.year, DEC);
     Serial.print("Fix: "); Serial.print((int)GPS.fix);
     Serial.print(" quality: "); Serial.println((int)GPS.fixquality);
-    if (GPS.fix) {
+    //if (GPS.fix) {
       Serial.print("Location: ");
       Serial.print(GPS.latitude, 4); Serial.print(GPS.lat);
       Serial.print(", ");
@@ -177,20 +218,29 @@ void loop() {
       Serial.print("Angle: "); Serial.println(GPS.angle);
       Serial.print("Altitude: "); Serial.println(GPS.altitude);
       Serial.print("Satellites: "); Serial.println((int)GPS.satellites);
+  
+   }
+*/
 
 
+   
+
+   if (broadcasting) {
+        Serial.println("BROADCAST");
+        broadcast_message();
+        tone(14, NOTE_DS8,180);
+        delay(200);     
+    
       WiFiClient client;
       const int httpPort = 3100;
       
       client.connect(host, httpPort);
-      
-
 
       HTTPClient http;
 
       http.begin("http://10.148.12.22:3100/api/blast");
       http.addHeader("Content-Type", "application/x-www-form-urlencoded");
-      http.POST(String("uniqueID=12345&latitude=") + (int)(GPS.latitude) + String("&longitude=") + (int)(GPS.longitude));
+      http.POST(String("uniqueID=5e36458aba5fd8421f705d8b"));
       //http.POST(String("uniqueID=12345&latitude=123&longitude=456"));
 
       Serial.println("posted...");
@@ -201,28 +251,42 @@ void loop() {
 
       client.stop();
   
-    }
-  }
+    
 
 
-  
+   } else { 
+        idle_message();
+   }
+
+}
 
 
+void broadcast_message(void) {
+  display.clearDisplay();
 
-  /*
+  display.setTextSize(2);             // Normal 1:1 pixel scale
+  display.setTextColor(WHITE);        // Draw white text
+  display.setCursor(0,0);             // Start at top-left corner
+  display.println(F("Pinging..."));
+  display.println(F(""));
+  display.println(F("Help is"));
+  display.println(F("on the way"));
 
-  HTTPClient http;
+  display.display();
+}
 
-  http.begin("http://10.148.12.22:3100/api/blast");
-  http.addHeader("Content-Type", "application/x-www-form-urlencoded");
-  http.POST(String("uniqueID=12345&latitude=") + (int)(GPS.day) + String("&longitude=") + (int)(GPS.month));
-  //http.POST(String("uniqueID=12345&latitude=123&longitude=456"));
+void idle_message(void) {
+  display.clearDisplay();
 
-  //Serial.println("posted...");
-  
-  String payload = http.getString();
+  display.setTextSize(2);             // Normal 1:1 pixel scale
+  display.setTextColor(WHITE);        // Draw white text
+  display.setCursor(0,0);             // Start at top-left corner
+  display.println(F(""));
+  display.println(F(""));
+  display.println(F("   Liv    "));
+  display.println(F(""));
+  display.println(F(""));
 
-  http.end();
-  
-  */
+  display.display();
+
 }

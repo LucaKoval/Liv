@@ -15,7 +15,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 
 // constant variables
-const int  buttonPin = 12;
+const int  buttonPin = 2;
 
 
 // changing variables
@@ -32,6 +32,7 @@ void setup() {
     pinMode(buttonPin, INPUT);
 
 
+
     if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { 
         Serial.println(F("SSD1306 allocation failed"));
     }
@@ -42,6 +43,9 @@ void setup() {
 }
 
 void loop() {
+
+    Serial.print("BUTTON PIN ");
+    Serial.println(buttonPin);
 
     // read the pushbutton input pin:
     buttonState = digitalRead(buttonPin);
